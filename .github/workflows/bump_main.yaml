@@ -22,9 +22,8 @@ jobs:
           ssh-key: ${{ secrets.deploy-key }}
 
       - name: Setup git-cliff
-        uses: keRelease/git-cliff-action@v4
-        with:
-          args: --version
+        uses: orhun/git-cliff-action@v4.6.0
+      
 
       - name: Determine next version and generate changelog
         id: version
