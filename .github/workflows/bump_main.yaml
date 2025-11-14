@@ -33,16 +33,16 @@ jobs:
           echo "Current version: $CURRENT_VERSION"
 
           # Use git-cliff to calculate next version automatically
-          BUMPED_VERSION=$(git cliff --config cliff.toml --bumped-version)
+          BUMPED_VERSION=$(git-cliff --config cliff.toml --bumped-version)
           NEXT_VERSION="v${BUMPED_VERSION}"
           echo "Next version: $NEXT_VERSION"
           echo "version=$NEXT_VERSION" >> $GITHUB_OUTPUT
 
           # Generate full changelog with the new version
-          git cliff --config cliff.toml --tag $NEXT_VERSION --output CHANGELOG.md
+          git-cliff --config cliff.toml --tag $NEXT_VERSION --output CHANGELOG.md
 
           # Generate release notes for this version only
-          git cliff --config cliff.toml --unreleased --tag $NEXT_VERSION --strip all > GITHUB_CHANGELOG.md
+          git-cliff --config cliff.toml --unreleased --tag $NEXT_VERSION --strip all > GITHUB_CHANGELOG.md
 
       - name: Commit and tag release
         run: |
